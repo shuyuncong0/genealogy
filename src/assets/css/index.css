@@ -1,0 +1,129 @@
+.h4 {
+  float: left;
+}
+
+.p {
+  float: left;
+}
+
+.header {
+  width: 100%;
+  height: 45px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #ddd;
+  z-index: 99999;
+}
+
+.header .header-box1 {
+  flex-grow: 2;
+  background: #ddd;
+  height: 45px;
+}
+
+.header .header-box1 span {
+  display: block;
+  text-align: center;
+  line-height: 45px;
+  font-size: 18px;
+  color: red;
+  cursor: pointer;
+}
+
+.header .header-box2 {
+  flex-grow: 8;
+  height: 45px;
+  position: relative;
+}
+
+.box2-serch {
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  top: 5px;
+}
+
+.header .header-box3 {
+  flex-grow: 2;
+  height: 45px;
+}
+
+.header .header-box3 span {
+  display: block;
+  text-align: center;
+  line-height: 45px;
+  font-size: 16px;
+  color: blue;
+  cursor: pointer;
+}
+
+.main {
+  width: 100%;
+  margin-top: 45px;
+}
+
+.weui-grid {
+  position: relative;
+  float: left;
+  padding: 6px 10px;
+  width: 33.33333333%;
+  box-sizing: border-box;
+}
+
+.vux-swiper-item img {
+  display: inline-block;
+  width: 100%;
+  height: 150px;
+}
+
+.weui-grids {
+  background: #fff;
+  border-bottom: 2px solid #c3c3c333;
+}
+
+.weui-grid {
+  position: relative;
+  float: left;
+  padding: 10px 15px;
+  width: 25% !important;
+  box-sizing: border-box;
+}
+
+.scrool-txt {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #c3c3c333;
+  margin-bottom: 55px;
+}
+
+.scr-txt-left {
+  height: 100%;
+  flex-grow: 2;
+}
+
+.scr-txt-left span {
+  display: block;
+  text-align: left;
+  line-height: 40px;
+  color: red;
+  font-size: 16px;
+}
+
+.scr-txt-right {
+  height: 17px;
+  flex-grow: 10;
+  overflow: hidden;
+}
+
+.scr-txt-right p {
+  color: #004bff;
+  display: block;
+  line-height: 15px;
+}

@@ -1,0 +1,48 @@
+[{
+    "username": "admin",
+    "password": "admin",
+    "roles": "admin",
+    "feature": [{
+            "id": "home",
+            "name": "首页",
+            "icon": "home",
+            "target": "home",
+            "feature": [{
+
+            }]
+        },
+        {
+            "id": "dispatcher",
+            "name": "调度",
+            "icon": "dispatcher",
+            "target": "dispatcher"
+        },
+        {
+            "id": "message",
+            "name": "消息",
+            "icon": "message",
+            "target": "message"
+        },
+        {
+            "id": "setting",
+            "name": "设置",
+            "icon": "settings",
+            "target": "setting"
+        }
+    ]
+}, {
+    "username": "driver",
+    "password": "driver",
+    "roles": "driver",
+    "feature": []
+}, {
+    "username": "subscriber",
+    "password": "subscriber",
+    "roles": "subscriber",
+    "feature": []
+}, {
+    "username": "leader",
+    "password": "leader",
+    "roles": "leader",
+    "feature": []
+}]

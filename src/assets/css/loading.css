@@ -1,0 +1,80 @@
+#loading-container {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	z-index: 1001;
+}
+
+.loader {
+	color:#fff;
+	position:fixed;
+	box-sizing:border-box;
+	overflow:hidden;
+	background-color:rgba(0,0,0,0.65);
+	width: 12em;
+	height: 9em;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	border-radius: 1em;
+	z-index:1002;
+}
+.loader:after,.loader:before {
+	box-sizing:border-box;
+}
+@keyframes rotation {
+	from {
+		transform:rotate(0);
+	}
+	to {
+		transform:rotate(359deg);
+	}
+}
+@keyframes blink {
+	from {
+		opacity:.5;
+	}
+	to {
+		opacity:1;
+	}
+}
+.loader:before {
+	position:fixed;
+	left:0;
+	top:calc(50% + 2.4em);
+	color:currentColor;
+	font-family:Helvetica,Arial,sans-serif;
+	text-align:center;
+	width:100%;
+	font-size:1em;
+}
+.loader:after {
+	content: '';
+	position: fixed;
+	width: 3em;
+	height: 3em;
+	border: solid 0.5em #fff;
+	border-left-color: transparent;
+	border-radius: 50%;
+	top: calc(50% - 2.5em);
+	left: calc(50% - 1.5em);
+	animation: rotation 1s linear infinite;
+}
+.loader[data-text='']:before {
+	content:'Loading...'
+}
+.loader[data-text]:not([data-text='']):before {
+	content:attr(data-text)
+}
+.loader[data-text][data-blink]:before {
+	animation:blink 1s linear infinite alternate
+}
+
+.loader[data-half]:after {
+	border-right-color:transparent;
+}
+.loader[data-inverse]:after {
+	animation-direction:reverse;
+}
