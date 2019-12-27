@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 const port = 8091
-// const host = '192.168.2.186' //测试 1
+// const host = '192.168.2.186' //测试 ss
 
 // const host = 'localhost' //攀钢
 const host = '47.98.189.101'
