@@ -6,7 +6,7 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <el-button class="filter-item" style="" type="primary" plain icon="el-icon-edit" @click="handleCreate">
-              新增
+              新增11
             </el-button>
             
             <el-button class="filter-item" style="" type="primary" plain icon="el-icon-delete" @click="handleDel">
