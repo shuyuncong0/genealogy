@@ -6,16 +6,16 @@
 
 <script>
 export default {
-  name: 'loading',
+  name: "loading",
   props: {
     text: {
       type: String,
-      default: '正在加载...'
+      default: "正在加载..."
     }
   }
-}
+};
 </script>
 
 <style scoped>
-@import '../assets/css/loading.css';
+@import "../assets/css/loading.css";
 </style>

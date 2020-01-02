@@ -1,5 +1,4 @@
 {
-    "eslintIntegration": true,
-    "singleQuote": true,
-    "semi": false
+  "eslintIntegration": true,
+  "no-console": "off"
 }

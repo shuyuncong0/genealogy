@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-Vue.use(Vuex)
-const port = 8091
+Vue.use(Vuex);
+const port = 8090;
 // const host = '192.168.2.186' //测试11231
 
-// const host = 'localhost' //攀钢
-const host = '47.98.189.101'
-const apiUrl = `http://${host}:${port}/genealogy/`
+const host = "localhost"; //攀钢
+// const host = '47.98.189.101'
+const apiUrl = `http://${host}:${port}/genealogy/`;
 export default new Vuex.Store({
   state: {
     // 公共变量
@@ -16,8 +16,8 @@ export default new Vuex.Store({
   },
   mutations: {
     setLoading: (state, status) => {
-      state.loading = status
+      state.loading = status;
     }
   },
   actions: {}
-})
+});
