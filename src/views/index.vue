@@ -2,123 +2,218 @@
   <div class="app-container">
     <el-container>
       <el-header>
-        <el-checkbox v-model="expandAll"
-                     label="1"
-                     @change="expandChange">
+        <el-checkbox v-model="expandAll" label="1" @change="expandChange">
           展开全部
         </el-checkbox>
-        <el-checkbox v-model="simpModel"
-                     label="1"
-                     @change="simpModelChange">
+        <el-checkbox v-model="simpModel" label="1" @change="simpModelChange">
           简约模式
         </el-checkbox>
+        <el-checkbox
+          v-model="drawerModel"
+          label="1"
+          @change="drawerModelChange"
+        >
+          抽屉模式
+        </el-checkbox>
       </el-header>
-
-      <el-main style="height: 800px;width:4500px;overflow-x: scroll; border: 1px solid #eee">
-        <vue2-org-tree :data="data"
-                       :labelClassName="labelClassName"
-                       :horizontal="horizontal"
-                       :collapsable="collapsable"
-                       :expandAll="expandAll"
-                       :render-content="renderContent"
-                       :label-class-name="labelClassName"
-                       @on-expand="onExpand"
-                       @on-node-click="onNodeClick"></vue2-org-tree>
-      </el-main>
-    </el-container>
-
-    <el-drawer title="title"
-               :before-close="handleClose"
-               :visible.sync="dialog"
-               :with-header="false"
-               direction="rtl"
-               custom-class="demo-drawer"
-               ref="drawer">
-      <div class="demo-drawer__content">
-        <el-form :model="form">
+      <el-container>
+        <el-aside width="380px" v-show="!drawerModel">
           <el-card class="box-card">
-            <div slot="header"
-                 class="clearfix">
-              <el-button class="filter-item"
-                         style=""
-                         type="primary"
-                         plain
-                         icon="el-icon-edit"
-                         @click="handleCreate">
+            <div slot="header" class="clearfix">
+              <el-button
+                class="filter-item"
+                style=""
+                type="primary"
+                plain
+                icon="el-icon-edit"
+                @click="handleCreate"
+              >
                 新增
               </el-button>
 
-              <el-button class="filter-item"
-                         style=""
-                         type="primary"
-                         plain
-                         icon="el-icon-delete"
-                         @click="handleDel">
+              <el-button
+                class="filter-item"
+                style=""
+                type="primary"
+                plain
+                icon="el-icon-delete"
+                @click="handleDel"
+              >
                 删除
               </el-button>
             </div>
             <div class="text item">
-              <el-form ref="dataForm"
-                       :rules="rules"
-                       :model="temp"
-                       label-position="left"
-                       label-width="70px"
-                       style="width: 345px;">
-                <el-form-item label="操作"
-                              prop="dialogStatus">
-                  <el-input v-model="dialogStatus"
-                            disabled />
+              <el-form
+                ref="dataForm"
+                :rules="rules"
+                :model="temp"
+                label-position="left"
+                label-width="70px"
+              >
+                <el-form-item label="操作" prop="dialogStatus">
+                  <el-input v-model="dialogStatus" disabled />
                 </el-form-item>
-                <el-form-item label="父亲姓名"
-                              prop="pusername">
-                  <el-input v-model="temp.pusername"
-                            disabled />
+                <el-form-item label="父亲姓名" prop="pusername">
+                  <el-input v-model="temp.pusername" disabled />
                 </el-form-item>
-                <el-form-item label="pid"
-                              prop="pid"
-                              v-show="false">
+                <el-form-item label="pid" prop="pid" v-show="false">
                   <el-input v-model="temp.pid" />
                 </el-form-item>
-                <el-form-item label="orgId"
-                              prop="orgId"
-                              v-show="false">
+                <el-form-item label="orgId" prop="orgId" v-show="false">
                   <el-input v-model="temp.orgId" />
                 </el-form-item>
-                <el-form-item label="userId"
-                              prop="userId"
-                              v-show="false">
+                <el-form-item label="userId" prop="userId" v-show="false">
                   <el-input v-model="temp.userId" />
                 </el-form-item>
-                <el-form-item label="姓名"
-                              prop="username">
+                <el-form-item label="姓名" prop="username">
                   <el-input v-model="temp.username" />
                 </el-form-item>
-                <el-form-item label="字号"
-                              prop="epithet">
+                <el-form-item label="字号" prop="epithet">
                   <el-input v-model="temp.epithet" />
                 </el-form-item>
-                <el-form-item label="世系"
-                              prop="lineage">
+                <el-form-item label="世系" prop="lineage">
                   <el-input v-model="temp.lineage" />
                 </el-form-item>
                 <el-form-item label="长次">
-                  <el-select v-model="temp.elderOrder"
-                             class="filter-item"
-                             placeholder="请选择长次">
-                    <el-option v-for="item in elderOrderOptions"
-                               :key="item.key"
-                               :label="item.value"
-                               :value="item.key" />
+                  <el-select
+                    v-model="temp.elderOrder"
+                    class="filter-item"
+                    placeholder="请选择长次"
+                  >
+                    <el-option
+                      v-for="item in elderOrderOptions"
+                      :key="item.key"
+                      :label="item.value"
+                      :value="item.key"
+                    />
                   </el-select>
                 </el-form-item>
-                <el-form-item label="妻子姓氏"
-                              prop="wifeLastname">
+                <el-form-item label="妻子姓氏" prop="wifeLastname">
                   <el-input v-model="temp.wifeLastname" />
                 </el-form-item>
               </el-form>
-              <el-button type="primary"
-                         plain
-                         @click="dialogStatus === 'create' ? createData() : updateData()">
+              <el-button
+                type="primary"
+                plain
+                @click="dialogStatus === 'create' ? createData() : updateData()"
+              >
+                确认
+              </el-button>
+              <el-button @click="resetTemp">
+                重置
+              </el-button>
+            </div>
+          </el-card>
+        </el-aside>
+
+        <el-main
+          style="height: 875px;width:4500px;overflow-x: scroll; border: 1px solid #eee"
+        >
+          <vue2-org-tree
+            :data="data"
+            :labelClassName="labelClassName"
+            :horizontal="horizontal"
+            :collapsable="collapsable"
+            :expandAll="expandAll"
+            :render-content="renderContent"
+            :label-class-name="labelClassName"
+            @on-expand="onExpand"
+            @on-node-click="onNodeClick"
+          ></vue2-org-tree>
+        </el-main>
+      </el-container>
+    </el-container>
+    <el-drawer
+      title="title"
+      :before-close="handleClose"
+      :visible.sync="dialog"
+      :with-header="false"
+      direction="rtl"
+      custom-class="demo-drawer"
+      ref="drawer"
+    >
+      <div class="demo-drawer__content">
+        <el-form :model="temp">
+          <el-card class="box-card">
+            <div slot="header" class="clearfix">
+              <el-button
+                class="filter-item"
+                style=""
+                type="primary"
+                plain
+                icon="el-icon-edit"
+                @click="handleCreate"
+              >
+                新增
+              </el-button>
+
+              <el-button
+                class="filter-item"
+                style=""
+                type="primary"
+                plain
+                icon="el-icon-delete"
+                @click="handleDel"
+              >
+                删除
+              </el-button>
+            </div>
+            <div class="text item">
+              <el-form
+                ref="dataForm"
+                :rules="rules"
+                :model="temp"
+                label-position="left"
+                label-width="70px"
+                style="width: 345px;"
+              >
+                <el-form-item label="操作" prop="dialogStatus">
+                  <el-input v-model="dialogStatus" disabled />
+                </el-form-item>
+                <el-form-item label="父亲姓名" prop="pusername">
+                  <el-input v-model="temp.pusername" disabled />
+                </el-form-item>
+                <el-form-item label="pid" prop="pid" v-show="false">
+                  <el-input v-model="temp.pid" />
+                </el-form-item>
+                <el-form-item label="orgId" prop="orgId" v-show="false">
+                  <el-input v-model="temp.orgId" />
+                </el-form-item>
+                <el-form-item label="userId" prop="userId" v-show="false">
+                  <el-input v-model="temp.userId" />
+                </el-form-item>
+                <el-form-item label="姓名" prop="username">
+                  <el-input v-model="temp.username" />
+                </el-form-item>
+                <el-form-item label="字号" prop="epithet">
+                  <el-input v-model="temp.epithet" />
+                </el-form-item>
+                <el-form-item label="世系" prop="lineage">
+                  <el-input v-model="temp.lineage" />
+                </el-form-item>
+                <el-form-item label="长次">
+                  <el-select
+                    v-model="temp.elderOrder"
+                    class="filter-item"
+                    placeholder="请选择长次"
+                  >
+                    <el-option
+                      v-for="item in elderOrderOptions"
+                      :key="item.key"
+                      :label="item.value"
+                      :value="item.key"
+                    />
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="妻子姓氏" prop="wifeLastname">
+                  <el-input v-model="temp.wifeLastname" />
+                </el-form-item>
+              </el-form>
+              <el-button
+                type="primary"
+                plain
+                @click="dialogStatus === 'create' ? createData() : updateData()"
+              >
                 确认
               </el-button>
               <el-button @click="resetTemp">
@@ -179,6 +274,7 @@ export default {
       collapsable: true,
       expandAll: true,
       simpModel: true,
+      drawerModel: false,
       labelClassName: "bg-white",
       dialog: false,
       loading: false,
@@ -341,6 +437,9 @@ export default {
     simpModelChange(status) {
       this.simpModel = status;
     },
+    drawerModelChange(status) {
+      this.drawerModel = status;
+    },
     handleClose(done) {
       done();
       // this.$confirm("确定要提交表单吗？")
@@ -406,7 +505,9 @@ export default {
     },
     onNodeClick(e, data) {
       this.dialogStatus = "edit";
-      this.dialog = true;
+      if (this.drawerModel) {
+        this.dialog = true;
+      }
 
       let _this = this;
       _this.temp = data;
