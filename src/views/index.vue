@@ -2,19 +2,21 @@
   <div class="app-container">
     <el-container>
       <el-header>
-        <el-checkbox v-model="expandAll" label="1" @change="expandChange">
-          展开全部
-        </el-checkbox>
-        <el-checkbox v-model="simpModel" label="1" @change="simpModelChange">
-          简约模式
-        </el-checkbox>
-        <el-checkbox
-          v-model="drawerModel"
-          label="1"
-          @change="drawerModelChange"
-        >
-          抽屉模式
-        </el-checkbox>
+        <div style="margin: 15px;">
+          <el-checkbox v-model="expandAll" label="1" @change="expandChange">
+            展开全部
+          </el-checkbox>
+          <el-checkbox v-model="simpModel" label="1" @change="simpModelChange">
+            简约模式
+          </el-checkbox>
+          <el-checkbox
+            v-model="drawerModel"
+            label="1"
+            @change="drawerModelChange"
+          >
+            抽屉模式
+          </el-checkbox>
+        </div>
       </el-header>
       <el-container>
         <el-aside width="380px" v-show="!drawerModel">
@@ -389,6 +391,7 @@ export default {
               center: true
             });
           }
+          this.dialog = false;
         });
     },
     updateData() {
@@ -412,6 +415,7 @@ export default {
               center: true
             });
           }
+          this.dialog = false;
         });
     },
     handleEdit() {
