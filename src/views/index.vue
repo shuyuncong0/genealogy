@@ -109,7 +109,7 @@
         </el-aside>
 
         <el-main
-          style="height: 875px;width:4500px;overflow-x: scroll; border: 1px solid #eee"
+          style="height: 850px;width:4500px;overflow-x: scroll; border: 1px solid #eee"
         >
           <vue2-org-tree
             :data="data"
