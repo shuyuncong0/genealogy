@@ -9,6 +9,10 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 Vue.prototype.axios = Axios;
 import Vue2OrgTree from "vue2-org-tree";
+import OrgTree from "v-org-tree";
+import "v-org-tree/dist/v-org-tree.css";
+import "./style/index.scss";
+Vue.use(OrgTree);
 Vue.use(ElementUI);
 Vue.use(Vue2OrgTree);
 new Vue({

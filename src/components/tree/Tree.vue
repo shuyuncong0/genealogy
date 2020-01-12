@@ -1,31 +1,33 @@
 <template>
-  <div :class="['v-tree__container',{'v-tree--grabbable':zoomable}]"> 
-    <svg :ref="svgRef" width="100%" height="100%">
+  <div :class="['v-tree__container', { 'v-tree--grabbable': zoomable }]">
+    <svg :ref="svgRef"
+         width="100%"
+         height="100%">
       <transition>
         <g :ref="gRef"
-         :transform="`translate(${translate.x},${translate.y}) scale(${scale})`"
-        >
-      
-        <Link v-for="(link,index) in tree.links" :key="index"
-          :pathFunc="pathFunc"
-          :orientation="orientation"
-          :linkData="link"
-          :nodeSize="nodeSize"
-          :transitionDuration="transitionDuration"
-          :deepFactor="deepFactor"
-        />
+           :transform="
+            `translate(${translate.x},${translate.y}) scale(${scale})`
+          ">
+          <Link v-for="(link, index) in tree.links"
+                :key="index"
+                :pathFunc="pathFunc"
+                :orientation="orientation"
+                :linkData="link"
+                :nodeSize="nodeSize"
+                :transitionDuration="transitionDuration"
+                :deepFactor="deepFactor" />
 
-        <Node v-for="node in tree.nodes" :key="node.data.id"
-            :nodeData="node"
-            :nodeSize="nodeSize"
-            :transitionDuration="transitionDuration"
-            :orientation="orientation"
-            :nodeSvgShape="nodeSvgShape"
-            :nodeSvgShapeAttr="nodeSvgShapeAttr"
-            :allowForeignObjects="allowForeignObjects"
-            :renderForeignObjects="renderForeignObjects"
-            @handleNodeToggle="handleNodeToggle"
-        />
+          <Node v-for="node in tree.nodes"
+                :key="node.data.id"
+                :nodeData="node"
+                :nodeSize="nodeSize"
+                :transitionDuration="transitionDuration"
+                :orientation="orientation"
+                :nodeSvgShape="nodeSvgShape"
+                :nodeSvgShapeAttr="nodeSvgShapeAttr"
+                :allowForeignObjects="allowForeignObjects"
+                :renderForeignObjects="renderForeignObjects"
+                @handleNodeToggle="handleNodeToggle" />
         </g>
       </transition>
     </svg>
@@ -34,9 +36,9 @@
 
 <script>
 import { tree, hierarchy, select, event, zoom } from "d3";
-import { uniqueId } from "../utils/assist";
-import { assignProperties } from "../utils/dataHelper";
-import * as props from "../utils/propsValidate";
+import { uniqueId } from "../../utils/assist";
+import { assignProperties } from "../../utils/dataHelper";
+import * as props from "../../utils/propsValidate";
 import Link from "./Link.vue";
 import Node from "./Node.vue";
 export default {
@@ -67,18 +69,16 @@ export default {
       const treemap = tree()
         // .size([this.viewPort.width, this.viewPort.height])
         .nodeSize(this.orientation === "horizontal" ? [y, x] : [x, y])
-        .separation(
-          (a, b) =>
-            a.parent.data.id == b.parent.data.id
-              ? this.separation.siblings
-              : this.separation.nonSiblings
+        .separation((a, b) =>
+          a.parent.data.id == b.parent.data.id
+            ? this.separation.siblings
+            : this.separation.nonSiblings
         );
       return treemap;
     },
     root() {
-      const root = hierarchy(
-        this.data[0],
-        d => (d._collapsed ? null : d._children)
+      const root = hierarchy(this.data[0], d =>
+        d._collapsed ? null : d._children
       );
       return root;
     },
@@ -90,9 +90,9 @@ export default {
       });
       const links = treeData.descendants().slice(1);
       nodes.forEach(node => {
-        this.orientation === "horizontal" ?
-        node.y = node.y * (1 / this.deepFactor) :
-        node.y = node.y * this.deepFactor
+        this.orientation === "horizontal"
+          ? (node.y = node.y * (1 / this.deepFactor))
+          : (node.y = node.y * this.deepFactor);
       });
       return { nodes, links };
     }
@@ -114,7 +114,7 @@ export default {
             .on("zoom", () => {
               // TODO: 当scale !== 1 时，首次触发zoom会有bug
               const [lastX, lastY] = [this.translate.x, this.translate.y];
-              const { x, y, k} = event.transform;
+              const { x, y, k } = event.transform;
               g.attr(
                 "transform",
                 `translate(${lastX + x},${lastY + y}) scale(${k})`

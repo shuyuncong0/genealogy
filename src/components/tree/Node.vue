@@ -1,22 +1,43 @@
 <template>
-  <g 
+  <g
     :ref="nodeData.data.id"
     :transform="transform"
     :style="initStyle"
     class="v-tree__node-base"
   >
     <foreignObject
-      :x="-nodeSize.x/2" :y="-nodeSize.y/2"
-      :width="nodeSize.x" :height="nodeSize.y"
+      :x="-nodeSize.x / 2"
+      :y="-nodeSize.y / 2"
+      :width="nodeSize.x"
+      :height="nodeSize.y"
     >
-      <ForeignObjectElement/>
+      <ForeignObjectElement />
     </foreignObject>
-    <g :transform="collapseIcon" v-if="nodeData.data._children" @click="handleClick" class="v-tree__collapse-icon">
+    <g
+      :transform="collapseIcon"
+      v-if="nodeData.data._children"
+      @click="handleClick"
+      class="v-tree__collapse-icon"
+    >
       <circle r="8"></circle>
-      <polyline points="-4,0 4,0 0,0 0,4 0,-4" stroke-width="2" stroke="white" fill="none" v-if="nodeData.data._collapsed"/>
-      <line x1="-4" y1="0" x2="4" y2="0" stroke-width="2" stroke="white" v-else/>
+      <polyline
+        points="-4,0 4,0 0,0 0,4 0,-4"
+        stroke-width="2"
+        stroke="white"
+        fill="none"
+        v-if="nodeData.data._collapsed"
+      />
+      <line
+        x1="-4"
+        y1="0"
+        x2="4"
+        y2="0"
+        stroke-width="2"
+        stroke="white"
+        v-else
+      />
     </g>
-  </g> 
+  </g>
 </template>
 
 <script>
@@ -35,7 +56,7 @@ export default {
     "transitionDuration",
     "orientation",
     "allowForeignObjects",
-    "renderForeignObjects",
+    "renderForeignObjects"
   ],
   watch: {
     nodeData: {

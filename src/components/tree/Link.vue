@@ -2,16 +2,14 @@
   <path
     class="v-tree__link-base"
     :d="linkPath"
-    :style = "initStyle"
+    :style="initStyle"
     :ref="`link-${linkData.data.id}`"
   />
 </template>
 
 <script>
 import { select } from "d3";
-import {
-    typeOf
-} from '../utils/assist'
+import { typeOf } from "../../utils/assist";
 export default {
   name: "Link",
   props: [
@@ -64,45 +62,81 @@ export default {
     },
     // fish
     fish() {
-      let path = ''
-      const [sx, sy] = [this.startPoint.x, this.startPoint.y]
-      const [px, py] = [this.endPoint.x, this.endPoint.y]
-      let factor = 0
-      let dx = parseInt(px - sx)
-      let dy = parseInt(py - sy)
+      let path = "";
+      const [sx, sy] = [this.startPoint.x, this.startPoint.y];
+      const [px, py] = [this.endPoint.x, this.endPoint.y];
+      let factor = 0;
+      let dx = parseInt(px - sx);
+      let dy = parseInt(py - sy);
       if (this.orientation === "vertical") {
         if (dx > 10) {
-          factor = 1
+          factor = 1;
         }
         if (dx < -10) {
-          factor = -1
+          factor = -1;
         }
-        const dt = (py - sy) / 2 / this.deepFactor
+        const dt = (py - sy) / 2 / this.deepFactor;
         path =
-        'M' + sx + ',' + sy +
-        'Q' + sx + ',' + (sy + dt ) +
-        ' ' + (sx + dt * factor / this.deepFactor) + ',' + (sy + dt) +
-        'L' + (px - dt * factor / this.deepFactor) + ',' + (sy + dt) +
-        'Q' + (px) + ',' + (sy + dt ) +
-        ' ' + px + ',' + py
+          "M" +
+          sx +
+          "," +
+          sy +
+          "Q" +
+          sx +
+          "," +
+          (sy + dt) +
+          " " +
+          (sx + (dt * factor) / this.deepFactor) +
+          "," +
+          (sy + dt) +
+          "L" +
+          (px - (dt * factor) / this.deepFactor) +
+          "," +
+          (sy + dt) +
+          "Q" +
+          px +
+          "," +
+          (sy + dt) +
+          " " +
+          px +
+          "," +
+          py;
       }
       if (this.orientation === "horizontal") {
         if (dy > 10) {
-          factor = 1
+          factor = 1;
         }
         if (dy < -10) {
-          factor = -1
+          factor = -1;
         }
-        const dt = (px - sx) / 2 / this.deepFactor
+        const dt = (px - sx) / 2 / this.deepFactor;
         path =
-        'M' + sx + ',' + sy +
-        'Q' + (px - dt) + ',' + sy +
-        ' ' + (px - dt)+ ',' + (sy + dt * factor / this.deepFactor) +
-        'L' + (px - dt) + ',' + (py - dt * factor / this.deepFactor) +
-        'Q' + (px - dt ) + ',' + py +
-        ' ' + px + ',' + py
+          "M" +
+          sx +
+          "," +
+          sy +
+          "Q" +
+          (px - dt) +
+          "," +
+          sy +
+          " " +
+          (px - dt) +
+          "," +
+          (sy + (dt * factor) / this.deepFactor) +
+          "L" +
+          (px - dt) +
+          "," +
+          (py - (dt * factor) / this.deepFactor) +
+          "Q" +
+          (px - dt) +
+          "," +
+          py +
+          " " +
+          px +
+          "," +
+          py;
       }
-      return path
+      return path;
     },
     // straight
     straight() {
@@ -171,13 +205,13 @@ export default {
       return path;
     },
     linkPath() {
-      if(typeOf(this.pathFunc) === 'string'){
-        return this[this.pathFunc]
+      if (typeOf(this.pathFunc) === "string") {
+        return this[this.pathFunc];
       }
-      if(typeOf(this.pathFunc) === 'function'){
-        return this.pathFunc(this.linkData, this.startPoint, this.endPoint)
+      if (typeOf(this.pathFunc) === "function") {
+        return this.pathFunc(this.linkData, this.startPoint, this.endPoint);
       }
-      new Error('linkPath 为 string 或 function')
+      new Error("linkPath 为 string 或 function");
     }
   },
   methods: {
