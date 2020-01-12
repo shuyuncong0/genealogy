@@ -19,7 +19,8 @@ const router = new Router({
   mode: process.env.NODE_ENV === "production" ? "hash" : "history",
   // eslint-disable-next-line no-undef
   base: process.env.BASE_URL,
-  routes: [{
+  routes: [
+    {
       path: "/",
       component: Index,
       children: [
@@ -45,7 +46,7 @@ const router = new Router({
 });
 //全局路由导航后置守卫 index copy
 // eslint-disable-next-line no-unused-vars
-router.afterEach(function (to) {
+router.afterEach(function(to) {
   //隐藏加载提示框
   store.commit("setLoading", false);
 });
