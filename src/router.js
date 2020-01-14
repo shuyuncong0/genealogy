@@ -9,7 +9,6 @@ import store from "./store";
 /* webpackChunkName: "home" */
 // eslint-disable-next-line no-unused-vars  vertical
 const Index = () => import("./views/geneal/index.vue");
-const IndexB = () => import("./views/geneal/indexB.vue");
 const View = () => import("./views/geneal/view.vue");
 
 Vue.use(Router);
@@ -19,8 +18,7 @@ const router = new Router({
   mode: process.env.NODE_ENV === "production" ? "hash" : "history",
   // eslint-disable-next-line no-undef
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: "/",
       component: Index,
       children: [
@@ -33,11 +31,6 @@ const router = new Router({
       ]
     },
     {
-      path: "/indexB",
-      name: "indexB",
-      component: IndexB
-    },
-    {
       path: "/view",
       name: "view",
       component: View
@@ -46,7 +39,7 @@ const router = new Router({
 });
 //全局路由导航后置守卫 index copy
 // eslint-disable-next-line no-unused-vars
-router.afterEach(function(to) {
+router.afterEach(function (to) {
   //隐藏加载提示框
   store.commit("setLoading", false);
 });
