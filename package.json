@@ -38,13 +38,16 @@
     "eslint": "^5.16.0",
     "eslint-plugin-html": "^5.0.5",
     "eslint-plugin-vue": "^5.0.0",
+    "file-loader": "^6.2.0",
     "less": "^3.13.1",
     "less-loader": "^5.0.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^7.3.1",
     "vue-template-compiler": "^2.6.12",
     "vuex": "^3.6.2",
-    "webpack": "^4.46.0"
+    "webpack": "^4.46.0",
+    "panzoom": "^7.2.2",
+    "html2canvas": "^1.0.0-alpha.12"
   },
   "eslintConfig": {
     "root": true,

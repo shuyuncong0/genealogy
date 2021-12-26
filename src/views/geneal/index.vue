@@ -12,6 +12,9 @@
           <el-checkbox v-model="drawerModel" label="1" @change="drawerModelChange">
             抽屉模式
           </el-checkbox>
+          <span @click="setImage" class="dept_camera" title="截图">
+            截图 <img src='./camera1.png' width='30' class='logo' style='cursor: pointer' />
+          </span>
         </div>
       </el-header>
       <el-container>
@@ -71,10 +74,17 @@
           </el-card>
         </el-aside>
 
-        <el-main style="height: 850px;width:4500px;overflow-x: scroll; border: 1px solid #eee">
-          <vue2-org-tree :data="data" :labelClassName="labelClassName" :horizontal="horizontal"
-            :collapsable="collapsable" :expandAll="expandAll" :render-content="renderContent"
-            :label-class-name="labelClassName" @on-expand="onExpand" @on-node-click="onNodeClick"></vue2-org-tree>
+        <el-main style=" border: 1px solid #eee" :style="{ height:treeHeight+'px'}">
+          <div class="container">
+            <div id="orgTree">
+              <div class="text-center orgTree">
+                <vue2-org-tree :data="data" :labelClassName="labelClassName" :horizontal="horizontal"
+                  :collapsable="collapsable" :expandAll="expandAll" :render-content="renderContent"
+                  :label-class-name="labelClassName" @on-expand="onExpand" @on-node-click="onNodeClick"></vue2-org-tree>
+              </div>
+            </div>
+          </div>
+
         </el-main>
       </el-container>
     </el-container>
@@ -144,6 +154,8 @@
 </template>
 
 <script>
+import html2canvas from "html2canvas";
+var panzoom = require("panzoom");
 export default {
   data() {
     return {
@@ -194,14 +206,28 @@ export default {
       labelClassName: "bg-white",
       dialog: false,
       loading: false,
-      formLabelWidth: "80px"
+      formLabelWidth: "80px",
+      treeHeight: 600
     };
   },
   created() {
     this.getFenealList();
     this.toggleExpand(this.data, this.expandAll);
   },
+  mounted() {
+    this.getTreeHeight();
+    // 增加监听事件，窗口变化时得到高度。
+    window.addEventListener("resize", this.getTreeHeight, false);
+
+    setTimeout(x => {
+      this.initZoom();
+    }, 500);
+  },
   methods: {
+    getTreeHeight() {
+      // 获取浏览器高度并计算得到表格所用高度。
+      this.treeHeight = document.documentElement.clientHeight - 60;
+    },
     getFenealList() {
       let _this = this;
       let forever = [
@@ -713,13 +739,123 @@ export default {
         }
       }
       return key;
+    }, //   截取图片
+    setImage() {
+      this.initZoom();
+      setTimeout(x => {
+        this.capture();
+      }, 500);
+    },
+    capture() {
+      let that = this;
+      var canvas2 = document.createElement("canvas");
+      let _canvas = document.getElementsByClassName("org-tree-container");
+      _canvas = _canvas[0];
+      var w = parseInt(window.getComputedStyle(_canvas).width);
+      var h = parseInt(window.getComputedStyle(_canvas).height);
+      // 将canvas画布放大若干倍，然后盛放在较小的容器内，就显得不模糊了
+      canvas2.width = w * 2.5;
+      canvas2.height = h * 2.5;
+      canvas2.style.width = w + "px";
+      canvas2.style.height = h + "px";
+      // 可以按照自己的需求，对context的参数修改,translate指的是偏移量
+      var context = canvas2.getContext("2d");
+      context.scale(2, 2);
+      html2canvas(document.getElementById("orgTree"), {
+        canvas: canvas2
+      }).then(function(canvas) {
+        that.saveAs(canvas.toDataURL("image/pdf"), "orgchart.png");
+      });
+    },
+    saveAs(uri, filename) {
+      var link = document.createElement("a");
+      if (typeof link.download === "string") {
+        link.href = uri;
+        link.download = filename;
+        // Firefox requires the link to be in the body
+        document.body.appendChild(link);
+        // simulate click
+        link.click();
+        // remove the link when done
+        document.body.removeChild(link);
+      } else {
+        window.open(uri);
+      }
+    },
+    resetOrg(data) {
+      // 如果子节点很多，根节点折叠时效果很差，
+      if (data.deptlevel === "1") this.moveZoom();
+    },
+    // 拖动页面
+    moveZoom(deptId) {
+      var pos;
+      if (deptId) {
+        pos = this.departmentIsVisible(deptId).moveTo;
+      } else {
+        pos = { x: 0, y: 0 };
+      }
+      this.zoomInstance.moveTo(pos.x, pos.y);
+    },
+    // 初始化zoom
+    initZoom(deptId) {
+      var area = document.querySelector("#orgTree");
+      //   if (this.zoomInstance) this.zoomInstance.dispose()
+      this.zoomInstance = panzoom(area, {
+        smoothScroll: false,
+        maxZoom: 1,
+        minZoom: 0.3
+      });
+      var pos;
+      if (deptId) {
+        pos = this.departmentIsVisible(deptId).moveTo;
+      } else {
+        pos = { x: 0, y: 0 };
+      }
+      this.zoomInstance.moveTo(pos.x, pos.y);
+      let _this = this;
+      // 移动或缩放结束
+      this.zoomInstance.on("panend", function(e) {
+        _this.isDrag = true;
+        setTimeout(x => {
+          _this.isDrag = false;
+        }, 200);
+      });
+    },
+    departmentIsVisible(deptId) {
+      var el = document.getElementById("ID_" + deptId);
+      var pr = document.getElementById("orgTree");
+      var elb = el.getBoundingClientRect();
+      var prb = pr.getBoundingClientRect();
+      var windim = { w: window.innerWidth, h: window.innerHeight - 100 };
+      var relpos = {
+        y: prb.top - elb.top + 0.5 * windim.h,
+        x: prb.left - elb.left + 0.5 * windim.w - 300
+      };
+      relpos.y = relpos.y > 0 ? 0 : relpos.y;
+
+      var isVissible = !(
+        elb.bottom < 0 ||
+        elb.right < 300 ||
+        elb.left > window.innerWidth ||
+        elb.top > window.innerHeight
+      );
+
+      return { isVissible: isVissible, moveTo: relpos };
     }
   }
 };
 </script>
 
 <style scoped>
+.container {
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
 .line {
   text-align: center;
+}
+.orgTree {
+  /* height: calc(100%); */
 }
 </style>
