@@ -3,10 +3,11 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 const port = 8090;
-// const host = '192.168.2.186' //测试11231
 
-const host = "localhost"; //攀钢
-// const host = '47.98.189.101'
+// const host = "localhost"; //
+const host = 'localhost'
+const baseUrl = process.env.VUE_APP_URL
+// const apiUrl = `http://${host}:${port}/formeal/genealogy/`;
 const apiUrl = `http://${host}:${port}/genealogy/`;
 export default new Vuex.Store({
   state: {

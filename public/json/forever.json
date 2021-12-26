@@ -1,0 +1,145 @@
+[
+    {
+        "lineage": "一世",
+        "childOrder": "1",
+        "epithet": "张1一",
+        "pid": "",
+        "userId": "1",
+        "orgId": "1",
+        "elderOrder": "长子",
+        "username": "张一一",
+        "wifeLastname": "李氏"
+    },
+    {
+        "lineage": "二世",
+        "childOrder": "2",
+        "epithet": "李2一",
+        "pid": "1",
+        "userId": "2",
+        "orgId": "2",
+        "elderOrder": "次子",
+        "username": "李二6",
+        "wifeLastname": "张氏"
+    },
+    {
+        "lineage": "3",
+        "childOrder": "1",
+        "epithet": "3",
+        "pid": "2",
+        "userId": "afb74338beb340b8886d8438aec9e73b",
+        "orgId": "4accc246e1ed421884c5fe17bccf157b",
+        "elderOrder": "长子",
+        "username": "3",
+        "wifeLastname": "4"
+    },
+    {
+        "lineage": "三世",
+        "childOrder": "2",
+        "epithet": "张3二",
+        "pid": "2",
+        "userId": "4",
+        "orgId": "4",
+        "elderOrder": "次子",
+        "username": "李三二",
+        "wifeLastname": "韩氏"
+    },
+    {
+        "lineage": "三世",
+        "childOrder": "5",
+        "epithet": "张3一",
+        "pid": "2",
+        "userId": "5",
+        "orgId": "5",
+        "elderOrder": "幼子",
+        "username": "张三一",
+        "wifeLastname": "牛氏"
+    },
+    {
+        "lineage": "一世",
+        "childOrder": "1",
+        "epithet": "张1一",
+        "pid": "3",
+        "userId": "1",
+        "orgId": "6",
+        "elderOrder": "长子",
+        "username": "张一一",
+        "wifeLastname": "李氏"
+    },
+    {
+        "lineage": "二世",
+        "childOrder": "2",
+        "epithet": "李2一",
+        "pid": "4",
+        "userId": "2",
+        "orgId": "7",
+        "elderOrder": "次子",
+        "username": "李二6",
+        "wifeLastname": "张氏"
+    },
+    {
+        "lineage": "三世",
+        "childOrder": "2",
+        "epithet": "张3二",
+        "pid": "6",
+        "userId": "4",
+        "orgId": "9",
+        "elderOrder": "次子",
+        "username": "李三二",
+        "wifeLastname": "韩氏"
+    },
+    {
+        "lineage": "7",
+        "childOrder": "1",
+        "epithet": "7",
+        "pid": "846d38589c3c41bb8d327253cadd1e45",
+        "userId": "d8c827305bc843abb9df213d59483783",
+        "orgId": "1979f0c500d84d5a8a5fa9102502a539",
+        "elderOrder": "长子",
+        "username": "7",
+        "wifeLastname": "7"
+    },
+    {
+        "lineage": "1",
+        "childOrder": "1",
+        "epithet": "1",
+        "pid": "d150e4c7b59f41e182d182b1c74ab5c8",
+        "userId": "923351a02e7d426fb7ed480ea2ffeeec",
+        "orgId": "180753347a9c430f943958f3092b4317",
+        "elderOrder": "长子",
+        "username": "1",
+        "wifeLastname": "1"
+    },
+    {
+        "lineage": "7",
+        "childOrder": "1",
+        "epithet": "苏7",
+        "pid": "d150e4c7b59f41e182d182b1c74ab5c8",
+        "userId": "e9a32a91e106467ead77e39c7119acf5",
+        "orgId": "59ccfc567192452dad0e9572047d7afc",
+        "elderOrder": "长子",
+        "username": "苏7",
+        "wifeLastname": "7"
+    },
+    {
+        "lineage": "7",
+        "childOrder": "1",
+        "epithet": "su7",
+        "pid": "d150e4c7b59f41e182d182b1c74ab5c8",
+        "userId": "d58afc39720549f29ff5501edd5e5231",
+        "orgId": "5d7a8faef7304bffa20fd4b25bf072c4",
+        "elderOrder": "长子",
+        "username": "su7",
+        "wifeLastname": "7"
+    },
+    {
+        "lineage": "7",
+        "childOrder": "1",
+        "epithet": "苏7",
+        "pid": "d150e4c7b59f41e182d182b1c74ab5c8",
+        "userId": "bbc466e0f578427588f886dcfea4b81e",
+        "orgId": "90dec6f2e9b440efb6d68cfae4345551",
+        "elderOrder": "长子",
+        "username": "苏6",
+        "wifeLastname": "苏"
+    }
+]

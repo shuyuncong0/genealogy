@@ -9,11 +9,7 @@
           <el-checkbox v-model="simpModel" label="1" @change="simpModelChange">
             简约模式
           </el-checkbox>
-          <el-checkbox
-            v-model="drawerModel"
-            label="1"
-            @change="drawerModelChange"
-          >
+          <el-checkbox v-model="drawerModel" label="1" @change="drawerModelChange">
             抽屉模式
           </el-checkbox>
         </div>
@@ -22,36 +18,15 @@
         <el-aside width="380px" v-show="!drawerModel">
           <el-card class="box-card">
             <div slot="header" class="clearfix">
-              <el-button
-                class="filter-item"
-                style=""
-                type="primary"
-                plain
-                icon="el-icon-edit"
-                @click="handleCreate"
-              >
+              <el-button class="filter-item" style="" type="primary" plain icon="el-icon-edit" @click="handleCreate">
                 新增
               </el-button>
-
-              <el-button
-                class="filter-item"
-                style=""
-                type="primary"
-                plain
-                icon="el-icon-delete"
-                @click="handleDel"
-              >
+              <el-button class="filter-item" style="" type="primary" plain icon="el-icon-delete" @click="handleDel">
                 删除
               </el-button>
             </div>
             <div class="text item">
-              <el-form
-                ref="dataForm"
-                :rules="rules"
-                :model="temp"
-                label-position="left"
-                label-width="70px"
-              >
+              <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="70px">
                 <el-form-item label="操作" prop="dialogStatus">
                   <el-input v-model="dialogStatus" disabled />
                 </el-form-item>
@@ -77,28 +52,16 @@
                   <el-input v-model="temp.lineage" />
                 </el-form-item>
                 <el-form-item label="长次">
-                  <el-select
-                    v-model="temp.elderOrder"
-                    class="filter-item"
-                    placeholder="请选择长次"
-                  >
-                    <el-option
-                      v-for="item in elderOrderOptions"
-                      :key="item.key"
-                      :label="item.value"
-                      :value="item.key"
-                    />
+                  <el-select v-model="temp.elderOrder" class="filter-item" placeholder="请选择长次">
+                    <el-option v-for="item in elderOrderOptions" :key="item.key" :label="item.value"
+                      :value="item.key" />
                   </el-select>
                 </el-form-item>
                 <el-form-item label="妻子姓氏" prop="wifeLastname">
                   <el-input v-model="temp.wifeLastname" />
                 </el-form-item>
               </el-form>
-              <el-button
-                type="primary"
-                plain
-                @click="dialogStatus === 'create' ? createData() : updateData()"
-              >
+              <el-button type="primary" plain @click="dialogStatus === 'create' ? createData() : updateData()">
                 确认
               </el-button>
               <el-button @click="resetTemp">
@@ -108,67 +71,30 @@
           </el-card>
         </el-aside>
 
-        <el-main
-          style="height: 850px;width:4500px;overflow-x: scroll; border: 1px solid #eee"
-        >
-          <vue2-org-tree
-            :data="data"
-            :labelClassName="labelClassName"
-            :horizontal="horizontal"
-            :collapsable="collapsable"
-            :expandAll="expandAll"
-            :render-content="renderContent"
-            :label-class-name="labelClassName"
-            @on-expand="onExpand"
-            @on-node-click="onNodeClick"
-          ></vue2-org-tree>
+        <el-main style="height: 850px;width:4500px;overflow-x: scroll; border: 1px solid #eee">
+          <vue2-org-tree :data="data" :labelClassName="labelClassName" :horizontal="horizontal"
+            :collapsable="collapsable" :expandAll="expandAll" :render-content="renderContent"
+            :label-class-name="labelClassName" @on-expand="onExpand" @on-node-click="onNodeClick"></vue2-org-tree>
         </el-main>
       </el-container>
     </el-container>
-    <el-drawer
-      title="title"
-      :before-close="handleClose"
-      :visible.sync="dialog"
-      :with-header="false"
-      direction="rtl"
-      custom-class="demo-drawer"
-      ref="drawer"
-    >
+    <el-drawer title="title" :before-close="handleClose" :visible.sync="dialog" :with-header="false" direction="rtl"
+      custom-class="demo-drawer" ref="drawer">
       <div class="demo-drawer__content">
         <el-form :model="temp">
           <el-card class="box-card">
             <div slot="header" class="clearfix">
-              <el-button
-                class="filter-item"
-                style=""
-                type="primary"
-                plain
-                icon="el-icon-edit"
-                @click="handleCreate"
-              >
+              <el-button class="filter-item" style="" type="primary" plain icon="el-icon-edit" @click="handleCreate">
                 新增
               </el-button>
 
-              <el-button
-                class="filter-item"
-                style=""
-                type="primary"
-                plain
-                icon="el-icon-delete"
-                @click="handleDel"
-              >
+              <el-button class="filter-item" style="" type="primary" plain icon="el-icon-delete" @click="handleDel">
                 删除
               </el-button>
             </div>
             <div class="text item">
-              <el-form
-                ref="dataForm"
-                :rules="rules"
-                :model="temp"
-                label-position="left"
-                label-width="70px"
-                style="width: 345px;"
-              >
+              <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="70px"
+                style="width: 345px;">
                 <el-form-item label="操作" prop="dialogStatus">
                   <el-input v-model="dialogStatus" disabled />
                 </el-form-item>
@@ -194,28 +120,16 @@
                   <el-input v-model="temp.lineage" />
                 </el-form-item>
                 <el-form-item label="长次">
-                  <el-select
-                    v-model="temp.elderOrder"
-                    class="filter-item"
-                    placeholder="请选择长次"
-                  >
-                    <el-option
-                      v-for="item in elderOrderOptions"
-                      :key="item.key"
-                      :label="item.value"
-                      :value="item.key"
-                    />
+                  <el-select v-model="temp.elderOrder" class="filter-item" placeholder="请选择长次">
+                    <el-option v-for="item in elderOrderOptions" :key="item.key" :label="item.value"
+                      :value="item.key" />
                   </el-select>
                 </el-form-item>
                 <el-form-item label="妻子姓氏" prop="wifeLastname">
                   <el-input v-model="temp.wifeLastname" />
                 </el-form-item>
               </el-form>
-              <el-button
-                type="primary"
-                plain
-                @click="dialogStatus === 'create' ? createData() : updateData()"
-              >
+              <el-button type="primary" plain @click="dialogStatus === 'create' ? createData() : updateData()">
                 确认
               </el-button>
               <el-button @click="resetTemp">
@@ -290,19 +204,170 @@ export default {
   methods: {
     getFenealList() {
       let _this = this;
-      let params = { "": "" };
+      let forever = [
+        {
+          lineage: "一世",
+          childOrder: "1",
+          epithet: "张1一",
+          pid: "",
+          userId: "1",
+          orgId: "1",
+          elderOrder: "长子",
+          username: "张一一",
+          wifeLastname: "李氏"
+        },
+        {
+          lineage: "二世",
+          childOrder: "2",
+          epithet: "李2一",
+          pid: "1",
+          userId: "2",
+          orgId: "2",
+          elderOrder: "次子",
+          username: "李二6",
+          wifeLastname: "张氏"
+        },
+        {
+          lineage: "3",
+          childOrder: "1",
+          epithet: "3",
+          pid: "2",
+          userId: "afb74338beb340b8886d8438aec9e73b",
+          orgId: "4accc246e1ed421884c5fe17bccf157b",
+          elderOrder: "长子",
+          username: "3",
+          wifeLastname: "4"
+        },
+        {
+          lineage: "三世",
+          childOrder: "2",
+          epithet: "张3二",
+          pid: "2",
+          userId: "4",
+          orgId: "4",
+          elderOrder: "次子",
+          username: "李三二",
+          wifeLastname: "韩氏"
+        },
+        {
+          lineage: "三世",
+          childOrder: "5",
+          epithet: "张3一",
+          pid: "2",
+          userId: "5",
+          orgId: "5",
+          elderOrder: "幼子",
+          username: "张三一",
+          wifeLastname: "牛氏"
+        },
+        {
+          lineage: "一世",
+          childOrder: "1",
+          epithet: "张1一",
+          pid: "3",
+          userId: "1",
+          orgId: "6",
+          elderOrder: "长子",
+          username: "张一一",
+          wifeLastname: "李氏"
+        },
+        {
+          lineage: "二世",
+          childOrder: "2",
+          epithet: "李2一",
+          pid: "4",
+          userId: "2",
+          orgId: "7",
+          elderOrder: "次子",
+          username: "李二6",
+          wifeLastname: "张氏"
+        },
+        {
+          lineage: "三世",
+          childOrder: "2",
+          epithet: "张3二",
+          pid: "6",
+          userId: "4",
+          orgId: "9",
+          elderOrder: "次子",
+          username: "李三二",
+          wifeLastname: "韩氏"
+        },
+        {
+          lineage: "7",
+          childOrder: "1",
+          epithet: "7",
+          pid: "846d38589c3c41bb8d327253cadd1e45",
+          userId: "d8c827305bc843abb9df213d59483783",
+          orgId: "1979f0c500d84d5a8a5fa9102502a539",
+          elderOrder: "长子",
+          username: "7",
+          wifeLastname: "7"
+        },
+        {
+          lineage: "1",
+          childOrder: "1",
+          epithet: "1",
+          pid: "d150e4c7b59f41e182d182b1c74ab5c8",
+          userId: "923351a02e7d426fb7ed480ea2ffeeec",
+          orgId: "180753347a9c430f943958f3092b4317",
+          elderOrder: "长子",
+          username: "1",
+          wifeLastname: "1"
+        },
+        {
+          lineage: "7",
+          childOrder: "1",
+          epithet: "苏7",
+          pid: "d150e4c7b59f41e182d182b1c74ab5c8",
+          userId: "e9a32a91e106467ead77e39c7119acf5",
+          orgId: "59ccfc567192452dad0e9572047d7afc",
+          elderOrder: "长子",
+          username: "苏7",
+          wifeLastname: "7"
+        },
+        {
+          lineage: "7",
+          childOrder: "1",
+          epithet: "su7",
+          pid: "d150e4c7b59f41e182d182b1c74ab5c8",
+          userId: "d58afc39720549f29ff5501edd5e5231",
+          orgId: "5d7a8faef7304bffa20fd4b25bf072c4",
+          elderOrder: "长子",
+          username: "su7",
+          wifeLastname: "7"
+        },
+        {
+          lineage: "7",
+          childOrder: "1",
+          epithet: "苏7",
+          pid: "d150e4c7b59f41e182d182b1c74ab5c8",
+          userId: "bbc466e0f578427588f886dcfea4b81e",
+          orgId: "90dec6f2e9b440efb6d68cfae4345551",
+          elderOrder: "长子",
+          username: "苏6",
+          wifeLastname: "苏"
+        }
+      ];
+      let list = forever;
+      _this.dataList = _this.arrDeepCopy(list);
+      _this.parseTree(list, treeList => {
+        _this.data = treeList[0];
+        console.log(_this.data);
+        this.toggleExpand(this.data, this.expandAll);
+      });
 
-      _this.axios
-        .post(_this.$store.state.apiUrl + "getFenealLists", params)
-        .then(response => {
-          let list = response.data.resData;
-          _this.dataList = _this.arrDeepCopy(list);
-          _this.parseTree(list, treeList => {
-            _this.data = treeList[0];
-            console.log(_this.data);
-            this.toggleExpand(this.data, this.expandAll);
-          });
-        });
+      //   _this.axios
+      //     .post("/api/formeal/genealogy/getFenealLists", params)
+      //     .then(response => {
+      //       let list = response.data.resData;
+      //       _this.dataList = _this.arrDeepCopy(list);
+      //       _this.parseTree(list, treeList => {
+      //         _this.data = treeList[0];
+      //         console.log(_this.data);
+      //         this.toggleExpand(this.data, this.expandAll);
+      //       });
+      //     });
     },
     handleDel() {
       let _this = this;

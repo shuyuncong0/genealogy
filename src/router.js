@@ -35,6 +35,7 @@ const router = new Router({
       name: "view",
       component: View
     }
+   
   ]
 });
 //全局路由导航后置守卫 index copy
