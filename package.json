@@ -14,7 +14,7 @@
     "axios": "^0.21.1",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "babel-plugin-transform-vue-jsx": "^3.7.0",
-    "d3": "^5.16.0",
+    "d3": "^7.6.1",
     "element-ui": "2.13.0",
     "normalize.css": "7.0.0",
     "uuid": "^3.4.0",
